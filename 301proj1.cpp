@@ -21,10 +21,11 @@ void display(PERSON P[], int N) {
     cout << setw(10) << left;
     cout << P[i].Balance << endl;
   }
-cout << endl;
+  cout << endl;
 }
 
 int totalClients(string fileName) {
+
   ifstream myFile(fileName);
 
   int tmp = 0;
@@ -89,6 +90,7 @@ void deposit(string cust, PERSON P[], int N) {
 }
 
 void newCopy(string fileName, PERSON P[], int N) {
+
   ofstream myFile(fileName);
 
   for (int i = 0; i<N; i++) {
@@ -96,7 +98,6 @@ void newCopy(string fileName, PERSON P[], int N) {
   }
 
   myFile.close();
-
 }
 
 int main() {
@@ -107,9 +108,7 @@ int main() {
   PERSON P[N];
 
   project(P, "data.txt");
-
   display(P, N);
-
   findRichest(P, N);
 
   string custName;

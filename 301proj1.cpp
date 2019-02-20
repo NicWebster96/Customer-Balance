@@ -68,7 +68,7 @@ void findRichest(PERSON P[], int N) {
     }
   }
   cout << "The customer with maximum balance is " << P[arrayPosition].Name << "." << endl;
-  cout << P[arrayPosition].Name << "'s balance is " << P[arrayPosition].Balance << endl << endl;
+  cout << P[arrayPosition].Name << "'s balance is $" << P[arrayPosition].Balance << endl << endl;
 }
 
 void deposit(string cust, PERSON P[], int N) {

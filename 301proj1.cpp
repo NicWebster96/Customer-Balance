@@ -18,8 +18,8 @@ void display(PERSON P[], int N) {
   for (int i = 0; i<N; i++) {
     cout << setw(20) << left;
     cout << P[i].Name << "  ";
-    cout << setw(10) << left;
-    cout << P[i].Balance << endl;
+    cout << "$" << setw(10) << left;
+    cout << setprecision(2) << fixed << P[i].Balance << endl;
   }
   cout << endl;
 }
@@ -47,7 +47,7 @@ void project(PERSON P[], string fileName) {
 
   ifstream myFile(fileName);
   while(myFile >> fname >> lname >> num) {
-    sname = fname + " " + lname;
+    sname = fname + " " + lname + "\0";
     strcpy(P[i].Name, sname.c_str());
     P[i].Balance = num;
     i++;
@@ -74,7 +74,7 @@ void findRichest(PERSON P[], int N) {
 void deposit(string cust, PERSON P[], int N) {
 
   float cashDeposit = 0;
-  cout << "How much would you like to deposit? ";
+  cout << "How much would you like to deposit? $";
   cin >> cashDeposit;
   cout << "You are depositing $" << cashDeposit << endl;
 
@@ -86,7 +86,7 @@ void deposit(string cust, PERSON P[], int N) {
       break;
     }
   }
-  cout << "Now your new balance is $" << custBalance << endl << endl;
+  cout << cust << ", your new balance is $" << custBalance << endl << endl;
 }
 
 void newCopy(string fileName, PERSON P[], int N) {
@@ -112,7 +112,7 @@ int main() {
   findRichest(P, N);
 
   string custName;
-  cout << "Enter your full name to deposit money: ";
+  cout << "Enter your full name (case sensitive) to deposit money: ";
   getline(cin, custName);
   deposit(custName, P, N);
 

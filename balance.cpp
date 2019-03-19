@@ -1,5 +1,5 @@
 // Nicholas Webster
-// Section
+// Section 1
 
 #include <string>
 #include <iostream>
@@ -72,7 +72,7 @@ void findRichest(PERSON P[], int N) {
       arrayPosition = i;
     }
   }
-  cout << "Highest balance: " << P[arrayPosition].Name << "." << endl << endl;
+  cout << "Highest balance: " << P[arrayPosition].Name << endl;
 }
 
 void deposit(PERSON P[], int N, string cust, float amount) {
@@ -101,35 +101,65 @@ void newCopy(string fileName, PERSON P[], int N) {
   myFile.close();
 }
 
+void printmenu() {
+    cout << "Please enter a choice:" << endl;
+    cout << "1. Display records"<< endl;
+    cout << "2. Deposit funds"<< endl;
+    cout << "3. Find Highest Balance" << endl;
+    cout << "4. Update records" << endl;
+    cout << "5. Exit the program" << endl;
+}
+
+void depositInfo(string& custName, float& amount) {
+  cout << "Enter name: ";
+  getline(cin, custName);
+  cout << "Amount: ";
+  cin >> amount;
+}
+
 int main() {
 
-  int N = totalClients("data.txt");
+    int N = totalClients("data.txt");
 
-  PERSON * P = readData(N);
+    PERSON * P = readData(N);
 
-  string custName;
-  float amount;
+    string custName;
+    float amount;
 
-  display(P, N);
-  findRichest(P, N);
+    int choice;
+    do
+    {
+          printmenu();
+          cin >> choice;
+          cin.ignore();
+          switch(choice)
+          {
+              case 1:
+                  display(P, N);
+                  break;
 
-  cout << "Enter name: ";
-  getline(cin, custName);
-  cout << "Amount: ";
-  cin >> amount;
+              case 2:
+                  depositInfo(custName, amount);
+                  deposit(P, N, custName, amount);
+                  break;
 
-  deposit(P, N, custName, amount);
+              case 3:
+                  findRichest(P, N);
+                  break;
 
-  custName.clear();
-  amount = 0.0;
+              case 4:
+                  newCopy("data.txt", P, N);
+                  break;
 
-  cout << "Enter name: ";
-  getline(cin, custName);
-  cout << "Amount: ";
-  cin >> amount;
+              case 5:
+                  newCopy("data.txt", P, N);
+                  break;
 
-  deposit(P, N, custName, amount);
-  findRichest(P, N);
-  // newCopy("data.txt", P, N);
-
+              default:
+                  cout << "Invalid entry" << endl;
+                  break;
+          }
+          cout << endl;
+     } while(choice != 5);
+        return 0;
 }

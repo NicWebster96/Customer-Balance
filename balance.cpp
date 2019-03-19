@@ -17,7 +17,7 @@ PERSON * readData(int & N) {
   PERSON *P;
   P = new PERSON[N];
 
-  string fname, lname, sname;
+  string fname, lname;
   float num;
   int i = 0;
   ifstream dataIn("data.txt");
@@ -25,8 +25,8 @@ PERSON * readData(int & N) {
   while(dataIn >> fname >> lname >> num) {
     string firstN = fname.substr(0,9);
     string lastN = lname.substr(0,10);
-    sname = firstN + " " + lastN + "\0";
-    strcpy(P[i].Name, sname.c_str());
+    string fullN = firstN + " " + lastN + "\0";
+    strcpy(P[i].Name, fullN.c_str());
     P[i].Balance = num;
     i++;
   }
@@ -36,13 +36,8 @@ PERSON * readData(int & N) {
 }
 
 void display(PERSON P[], int N) {
-  cout << "Name                  Balance" << endl;
-  cout << "---------------------------------" << endl;
   for (int i = 0; i<N; i++) {
-    cout << setw(20) << left;
-    cout << P[i].Name << "  ";
-    cout << "$" << setw(10) << left;
-    cout << setprecision(2) << fixed << P[i].Balance << endl;
+    cout << P[i].Name << " " << P[i].Balance << endl;
   }
   cout << endl;
 }
@@ -84,6 +79,9 @@ void deposit(PERSON P[], int N, string cust, float amount) {
       P[i].Balance += amount;
       custBalance = P[i].Balance;
       break;
+    } else {
+      cout << "Record not found" << endl;
+      return;
     }
   }
   cout << "New Balance: " << custBalance << endl << endl;

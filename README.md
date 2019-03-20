@@ -1,6 +1,7 @@
-#Created by Nicholas Webster
-##CPSC 301 Section 1
-##Spring 2019
+# Created by Nicholas Webster
+
+## CPSC 301 Section 1
+## Spring 2019
 
 Originally, this repo was for project 1. The records were stored in a struct and an array was created large enough to hold all the records. c_strings are used so "\0" was added to the end of each name. A basic display was created using iomanip.
 
